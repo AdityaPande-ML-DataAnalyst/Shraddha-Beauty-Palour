@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500">
+  <defs>
+    <linearGradient id="heroCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#FDF2F4" />
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#9D3850" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Background decorative glowing rings -->
+  <circle cx="300" cy="240" r="190" fill="#FDF2F4" opacity="0.6" />
+  <circle cx="300" cy="240" r="140" fill="none" stroke="#C59B63" stroke-width="1.5" stroke-dasharray="8 8" opacity="0.4" />
+
+  <!-- Main Card Container -->
+  <rect x="60" y="50" width="480" height="400" rx="24" fill="url(#heroCardGrad)" filter="url(#softShadow)" stroke="#FCE7EA" stroke-width="1.5" />
+
+  <!-- Inner Badge -->
+  <rect x="180" y="85" width="240" height="34" rx="17" fill="#9D3850" opacity="0.08" />
+  <text x="300" y="107" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#9D3850" letter-spacing="1">
+    FEMALE-ONLY BEAUTY PARLOUR
+  </text>
+
+  <!-- Brand Emblem Graphic -->
+  <g transform="translate(300, 190)">
+    <circle cx="0" cy="0" r="50" fill="#9D3850" opacity="0.08" />
+    <circle cx="0" cy="0" r="42" fill="#9D3850" opacity="0.12" />
+    <!-- Stylized Lotus / Beauty Petals -->
+    <path d="M0 -30 C15 -10 25 10 0 25 C-25 10 -15 -10 0 -30 Z" fill="#9D3850" />
+    <path d="M-5 -20 C-30 -10 -35 15 -10 20 C-15 5 -10 -10 -5 -20 Z" fill="#C59B63" opacity="0.9" />
+    <path d="M5 -20 C30 -10 35 15 10 20 C15 5 10 -10 5 -20 Z" fill="#C59B63" opacity="0.9" />
+    <circle cx="0" cy="30" r="3" fill="#9D3850" />
+  </g>
+
+  <!-- Typography -->
+  <g text-anchor="middle" font-family="system-ui, sans-serif">
+    <text x="300" y="295" font-size="24" font-weight="800" fill="#231F20" letter-spacing="-0.5">
+      Shraddha Beauty Parlour
+    </text>
+    <text x="300" y="325" font-size="15" font-weight="600" fill="#9D3850">
+      Beauty, Style &amp; Confidence
+    </text>
+    <text x="300" y="355" font-size="13" font-weight="500" fill="#60595C">
+      Sai Nagar, Badnera Road • Amravati
+    </text>
+
+    <!-- Hours Tag -->
+    <rect x="170" y="380" width="260" height="32" rx="16" fill="#FBF9F7" stroke="#EAE2D8" stroke-width="1" />
+    <circle cx="190" cy="396" r="4" fill="#25D366" />
+    <text x="305" y="401" font-size="12" font-weight="600" fill="#231F20">
+      Open All Days: 9:00 AM – 9:00 PM
+    </text>
+  </g>
+</svg>
+

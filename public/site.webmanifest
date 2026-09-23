@@ -1,0 +1,17 @@
+{
+  "name": "Shraddha Beauty Parlour",
+  "short_name": "Shraddha Parlour",
+  "description": "Female-only beauty parlour in Sai Nagar, Amravati, Maharashtra.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF9F7",
+  "theme_color": "#9D3850",
+  "icons": [
+    {
+      "src": "/images/hero/hero-illustration.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="certGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF2F4" />
+      <stop offset="100%" stop-color="#F6EFE4" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#certGrad)" />
+  <rect x="20" y="20" width="560" height="360" rx="16" fill="none" stroke="#C59B63" stroke-width="1.5" stroke-dasharray="6 6" />
+  
+  <g transform="translate(300, 150)" text-anchor="middle">
+    <circle cx="0" cy="0" r="45" fill="#9D3850" opacity="0.08" />
+    <rect x="-24" y="-18" width="48" height="36" rx="4" fill="none" stroke="#9D3850" stroke-width="2.5" />
+    <line x1="-16" y1="-8" x2="16" y2="-8" stroke="#C59B63" stroke-width="2" />
+    <line x1="-16" y1="0" x2="16" y2="0" stroke="#C59B63" stroke-width="2" />
+    <line x1="-16" y1="8" x2="6" y2="8" stroke="#C59B63" stroke-width="2" />
+    <circle cx="12" cy="8" r="4" fill="#9D3850" />
+  </g>
+
+  <g text-anchor="middle" font-family="system-ui, sans-serif">
+    <text x="300" y="235" font-size="20" font-weight="700" fill="#9D3850" letter-spacing="1">
+      TRAINING &amp; CERTIFICATES
+    </text>
+    <text x="300" y="265" font-size="14" font-weight="600" fill="#231F20" opacity="0.85">
+      Shraddha Beauty Parlour
+    </text>
+    <rect x="180" y="290" width="240" height="28" rx="14" fill="#9D3850" opacity="0.1" />
+    <text x="300" y="309" font-size="12" font-weight="600" fill="#7D2A3E">
+      Authentic Photos Coming Soon
+    </text>
+  </g>
+</svg>
+
