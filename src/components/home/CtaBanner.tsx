@@ -1,60 +1,60 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
-import { WhatsAppIcon, SparklesIcon, InfoIcon } from '@/components/ui/Icons';
+import { WhatsAppIcon, SparklesIcon } from '@/components/ui/Icons';
+import { getWhatsAppHref } from '@/utils/contact';
 
 export const CtaBanner: React.FC = () => {
   const { t } = useTranslation();
+  const whatsappHref = getWhatsAppHref();
 
   return (
-    <section className="py-14 sm:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-950 text-white relative overflow-hidden">
-      {/* Decorative floral circles */}
-      <div
-        className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-secondary-500/10 blur-2xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-primary-500/20 blur-2xl pointer-events-none"
-        aria-hidden="true"
-      />
+    <section className="py-12 sm:py-16 bg-cream">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
+        <div className="reveal relative rounded-[26px] bg-gradient-to-r from-primary to-primary-dark py-14 px-6 sm:px-10 text-center text-white overflow-hidden shadow-warm-lg">
+          <div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(197,155,99,0.35),transparent_55%)] pointer-events-none"
+            aria-hidden="true"
+          />
 
-      <Container>
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-white text-xs font-semibold backdrop-blur-sm border border-white/20">
-            <SparklesIcon className="w-3.5 h-3.5 text-secondary-300" />
-            <span>{t.common.femaleOnlyBadge}</span>
-          </div>
-
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-[34px] font-semibold mb-2.5 relative z-10 leading-tight">
             {t.home.ctaBannerTitle}
           </h2>
 
-          <p className="text-sm sm:text-base text-primary-100 max-w-xl mx-auto leading-relaxed">
+          <p className="text-white/90 text-sm max-w-lg mx-auto mb-7 relative z-10 leading-relaxed">
             {t.home.ctaBannerDesc}
           </p>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button
-              href="/contact/"
-              variant="whatsapp"
-              size="lg"
-              icon={<WhatsAppIcon className="w-5 h-5" />}
-            >
-              {t.nav.inquireWhatsApp}
-            </Button>
+          <div className="relative z-10 flex justify-center">
+            {whatsappHref.startsWith('http') ? (
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-whatsapp font-extrabold text-[13.5px] sm:text-[14px] px-6 py-3 rounded-full shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 hover:bg-cream-100 transition-all duration-200"
+              >
+                <WhatsAppIcon className="w-4 h-4 fill-current" />
+                <span>{t.nav.inquireWhatsApp}</span>
+              </a>
+            ) : (
+              <Link
+                href={whatsappHref}
+                className="inline-flex items-center gap-2 bg-white text-whatsapp font-extrabold text-[13.5px] sm:text-[14px] px-6 py-3 rounded-full shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 hover:bg-cream-100 transition-all duration-200"
+              >
+                <WhatsAppIcon className="w-4 h-4 fill-current" />
+                <span>{t.nav.inquireWhatsApp}</span>
+              </Link>
+            )}
           </div>
 
-          {/* Confirmation Notice */}
-          <div className="pt-4 max-w-lg mx-auto flex items-center justify-center gap-2 text-xs text-primary-200">
-            <InfoIcon className="w-4 h-4 shrink-0 text-secondary-300" />
+          <p className="mt-4 text-[11.5px] text-white/70 relative z-10 flex items-center justify-center gap-1.5">
+            <SparklesIcon className="w-3.5 h-3.5 text-gold-300" />
             <span>{t.common.disclaimerSubjectToConfirmation}</span>
-          </div>
+          </p>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };
-

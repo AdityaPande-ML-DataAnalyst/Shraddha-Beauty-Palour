@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import { salonConfig } from '@/config/salon.config';
+import { getWhatsAppHref } from '@/utils/contact';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -12,11 +14,11 @@ export default function OffersPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="py-12 sm:py-20 bg-cream-50/50">
+    <div className="py-8 sm:py-12 bg-cream-50/50">
       <Container>
         <SectionHeader
           badge={
-            <span className="text-xs font-semibold text-secondary-800 uppercase tracking-wider bg-secondary-100/60 px-3.5 py-1 rounded-full border border-secondary-200">
+            <span className="text-[11px] font-semibold text-secondary-900 uppercase tracking-wider bg-secondary-100 px-3 py-0.5 rounded-full border border-secondary-300">
               Seasonal Specials
             </span>
           }
@@ -24,17 +26,20 @@ export default function OffersPage() {
           subtitle={t.offersPage.pageSubtitle}
         />
 
-        <div className="py-8">
+        <div className="py-4">
           <EmptyState
-            icon={<GiftIcon className="w-8 h-8" />}
+            icon={<GiftIcon className="w-6 h-6" />}
             title={t.offersPage.emptyTitle}
             description={t.offersPage.emptyDescription}
             action={
               <Button
-                href="/contact/"
+                href={getWhatsAppHref(
+                  `Hello ${salonConfig.name},\n\nI would like to inquire about current seasonal specials and offers.`
+                )}
+                isExternal
                 variant="whatsapp"
-                size="md"
-                icon={<WhatsAppIcon className="w-4 h-4" />}
+                size="sm"
+                icon={<WhatsAppIcon className="w-3.5 h-3.5 fill-current" />}
               >
                 {t.offersPage.emptyAction}
               </Button>
@@ -45,4 +50,3 @@ export default function OffersPage() {
     </div>
   );
 }
-

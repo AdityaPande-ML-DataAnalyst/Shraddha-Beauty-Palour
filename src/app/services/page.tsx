@@ -11,11 +11,11 @@ export default function ServicesPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="py-12 sm:py-20 bg-cream-50/50">
+    <div className="py-8 sm:py-12 bg-cream-50/50">
       <Container>
         <SectionHeader
           badge={
-            <span className="text-xs font-semibold text-secondary-800 uppercase tracking-wider bg-secondary-100/60 px-3.5 py-1 rounded-full border border-secondary-200">
+            <span className="text-[11px] font-semibold text-secondary-900 uppercase tracking-wider bg-secondary-100 px-3 py-0.5 rounded-full border border-secondary-300">
               Treatment Catalog
             </span>
           }
@@ -23,7 +23,7 @@ export default function ServicesPage() {
           subtitle={t.servicesPage.pageSubtitle}
         />
 
-        <div className="space-y-10">
+        <div className="space-y-6 max-w-6xl mx-auto">
           {/* Transparent Pricing Notice */}
           <PricingNotice />
 
@@ -34,4 +34,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-

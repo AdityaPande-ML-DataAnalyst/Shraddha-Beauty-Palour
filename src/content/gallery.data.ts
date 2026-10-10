@@ -1,30 +1,23 @@
-export type GalleryCategoryId =
-  | 'hair-styling'
-  | 'makeup'
-  | 'bridal-makeup'
-  | 'nail-art'
-  | 'saree-styling'
-  | 'training-certificates';
+import { GALLERY_CATEGORIES, type GalleryCategoryId } from '@/lib/galleryCategories';
+
+export type { GalleryCategoryId };
 
 export interface GalleryItem {
   id: string;
   categoryId: GalleryCategoryId;
   categoryLabel: string;
   title: string;
-  placeholderSvg: string; // SVG path or placeholder indicator
-  imageSrc?: string; // Optional path to real photo when provided later
+  placeholderSvg: string;
+  imageSrc?: string;
   isPlaceholder: boolean;
   alt: string;
 }
 
-export const galleryCategories: { id: GalleryCategoryId; labelKey: string; defaultLabel: string }[] = [
-  { id: 'hair-styling', labelKey: 'filterHair', defaultLabel: 'Hair Styling' },
-  { id: 'makeup', labelKey: 'filterMakeup', defaultLabel: 'Makeup' },
-  { id: 'bridal-makeup', labelKey: 'filterBridal', defaultLabel: 'Bridal Makeup' },
-  { id: 'nail-art', labelKey: 'filterNails', defaultLabel: 'Nail Art' },
-  { id: 'saree-styling', labelKey: 'filterSaree', defaultLabel: 'Saree Styling' },
-  { id: 'training-certificates', labelKey: 'filterCertificates', defaultLabel: 'Training & Certificates' },
-];
+export const galleryCategories = GALLERY_CATEGORIES.map((category) => ({
+  ...category,
+  labelKey: category.id,
+  defaultLabel: category.label,
+}));
 
 export const galleryItems: GalleryItem[] = [
   {

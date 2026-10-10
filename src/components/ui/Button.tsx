@@ -40,25 +40,25 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none select-none';
+    'inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap';
 
   const variantStyles: Record<ButtonVariant, string> = {
     primary:
-      'bg-primary-600 text-white hover:bg-primary-700 shadow-sm hover:shadow-md',
+      'bg-primary text-white hover:bg-primary-dark shadow-sm hover:shadow-md border border-transparent font-bold',
     secondary:
-      'bg-secondary-50 text-secondary-900 border border-secondary-300 hover:bg-secondary-100 hover:border-secondary-400',
+      'bg-primary-soft text-primary border border-[#f2d7dc] hover:bg-primary hover:text-white font-bold',
     outline:
-      'bg-transparent text-primary-700 border-2 border-primary-600 hover:bg-primary-50',
+      'bg-transparent text-primary border-[1.5px] border-primary hover:bg-primary-soft font-bold',
     ghost:
-      'bg-transparent text-slate-700 hover:bg-cream-100 hover:text-slate-900',
+      'bg-transparent text-muted hover:bg-cream-100 hover:text-ink',
     whatsapp:
-      'bg-whatsapp text-white hover:bg-whatsapp-hover shadow-sm hover:shadow-md',
+      'bg-whatsapp text-white hover:bg-whatsapp-hover shadow-wa-btn font-bold',
   };
 
   const sizeStyles: Record<ButtonSize, string> = {
-    sm: 'text-sm px-3.5 py-2 min-h-[40px] gap-1.5',
-    md: 'text-base px-5 py-2.5 min-h-[48px] gap-2',
-    lg: 'text-lg px-6 py-3.5 min-h-[54px] gap-2.5',
+    sm: 'text-xs sm:text-[13px] px-4 py-1.5 min-h-[36px] gap-1.5',
+    md: 'text-[13.5px] sm:text-sm px-5 py-2.5 min-h-[42px] gap-2',
+    lg: 'text-sm sm:text-base px-6 py-3 min-h-[46px] gap-2.5',
   };
 
   const widthStyle = fullWidth ? 'w-full' : '';

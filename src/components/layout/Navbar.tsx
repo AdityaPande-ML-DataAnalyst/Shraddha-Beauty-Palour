@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { navigationItems } from '@/config/navigation.config';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface NavbarProps {
@@ -14,9 +13,20 @@ export const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
   const pathname = usePathname();
   const { t } = useTranslation();
 
+  const desktopNavLinks = [
+    { id: 'home', path: '/', label: t.nav.home },
+    { id: 'services', path: '/services/', label: t.nav.services },
+    { id: 'gallery', path: '/gallery/', label: t.nav.gallery },
+    { id: 'about', path: '/about/', label: t.nav.about },
+    { id: 'contact', path: '/contact/', label: t.nav.contact },
+  ];
+
   return (
-    <nav className={`hidden lg:flex items-center gap-1 ${className}`} aria-label="Main Navigation">
-      {navigationItems.map((item) => {
+    <nav
+      className={`hidden lg:flex items-center gap-1 bg-white border border-[#f0e2e5] rounded-full p-[4px] shadow-xs shrink-0 ${className}`}
+      aria-label="Main Navigation"
+    >
+      {desktopNavLinks.map((item) => {
         const isActive =
           item.path === '/'
             ? pathname === '/'
@@ -26,17 +36,16 @@ export const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
           <Link
             key={item.id}
             href={item.path}
-            className={`px-3 py-2 rounded-xl text-sm font-medium transition-all ${
+            className={`text-xs xl:text-[13.5px] font-semibold px-3 xl:px-4 py-1.5 rounded-full transition-colors duration-200 whitespace-nowrap ${
               isActive
-                ? 'text-primary-700 bg-primary-50/80 font-semibold'
-                : 'text-slate-700 hover:text-primary-700 hover:bg-cream-100'
+                ? 'bg-primary-soft text-primary font-bold'
+                : 'text-muted hover:bg-primary-soft hover:text-primary'
             }`}
           >
-            {t.nav[item.labelKey]}
+            {item.label}
           </Link>
         );
       })}
     </nav>
   );
 };
-

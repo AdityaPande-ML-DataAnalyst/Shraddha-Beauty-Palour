@@ -7,16 +7,14 @@ import { navigationItems } from '@/config/navigation.config';
 import { salonConfig } from '@/config/salon.config';
 import { useTranslation } from '@/hooks/useTranslation';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import {
   XIcon,
   WhatsAppIcon,
   PhoneIcon,
   MapPinIcon,
   ClockIcon,
-  SparklesIcon,
 } from '@/components/ui/Icons';
+import { getWhatsAppHref, getPhoneHref } from '@/utils/contact';
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -27,8 +25,9 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
   const pathname = usePathname();
   const { t } = useTranslation();
   const drawerRef = useRef<HTMLDivElement>(null);
+  const whatsappHref = getWhatsAppHref();
+  const phoneHref = getPhoneHref();
 
-  // Close drawer on escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -56,25 +55,22 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
       aria-modal="true"
       aria-label="Mobile Navigation"
     >
-      {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-ink/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Drawer */}
       <div
         ref={drawerRef}
-        className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col z-10 overflow-y-auto"
+        className="fixed inset-y-0 right-0 w-full max-w-xs bg-cream shadow-2xl flex flex-col z-10 overflow-y-auto border-l border-[#eee0e3]"
       >
-        {/* Drawer Header */}
-        <div className="p-4 border-b border-cream-200 flex items-center justify-between bg-cream-50/50">
+        <div className="p-4 border-b border-primary-dark flex items-center justify-between bg-primary text-white">
           <div>
-            <span className="font-bold text-lg text-slate-900 block leading-tight">
+            <span className="font-extrabold text-base text-white block leading-tight">
               {salonConfig.name}
             </span>
-            <span className="text-xs font-medium text-primary-700">
+            <span className="text-[11px] font-semibold text-gold-200">
               {t.common.femaleOnlyBadge}
             </span>
           </div>
@@ -82,22 +78,20 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
             type="button"
             onClick={onClose}
             aria-label={t.nav.closeMenu}
-            className="w-10 h-10 rounded-xl bg-white border border-cream-200 text-slate-700 hover:text-slate-900 hover:bg-cream-100 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600"
+            className="w-8 h-8 rounded-lg bg-primary-dark text-white hover:bg-black/20 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
-            <XIcon className="w-5 h-5" />
+            <XIcon className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Language Selection Bar */}
-        <div className="px-4 py-3 bg-cream-50 border-b border-cream-200 flex items-center justify-between">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+        <div className="px-4 py-2.5 bg-white border-b border-[#f0e2e5] flex items-center justify-between">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
             Language
           </span>
           <LanguageSwitcher />
         </div>
 
-        {/* Navigation Links */}
-        <nav className="p-4 space-y-1 flex-1" aria-label="Mobile Navigation Menu">
+        <nav className="p-3.5 space-y-1 flex-1" aria-label="Mobile Navigation Menu">
           {navigationItems.map((item) => {
             const isActive =
               item.path === '/'
@@ -109,47 +103,54 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
                 key={item.id}
                 href={item.path}
                 onClick={onClose}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium min-h-[48px] transition-colors ${
+                className={`flex items-center justify-between px-3.5 py-2.5 rounded-full text-sm font-semibold transition-colors ${
                   isActive
-                    ? 'bg-primary-50 text-primary-800 font-semibold'
-                    : 'text-slate-700 hover:bg-cream-100 hover:text-slate-900'
+                    ? 'bg-primary-soft text-primary font-bold border border-[#f2d7dc]'
+                    : 'text-muted hover:bg-white hover:text-ink'
                 }`}
               >
                 <span>{t.nav[item.labelKey]}</span>
-                {isActive && <span className="w-2 h-2 rounded-full bg-primary-600" />}
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
               </Link>
             );
           })}
         </nav>
 
-        {/* Parlour Info & CTAs */}
-        <div className="p-4 border-t border-cream-200 bg-cream-50/70 space-y-4">
-          <div className="space-y-2 text-xs text-slate-600">
-            <div className="flex items-center gap-2 text-slate-700 font-medium">
-              <ClockIcon className="w-4 h-4 text-primary-600 shrink-0" />
+        <div className="p-4 border-t border-[#f0e2e5] bg-white space-y-3">
+          <div className="space-y-1.5 text-xs text-muted">
+            <div className="flex items-center gap-1.5 font-medium">
+              <ClockIcon className="w-3.5 h-3.5 text-primary shrink-0" />
               <span>{salonConfig.hours.timing} ({salonConfig.hours.days})</span>
             </div>
-            <div className="flex items-start gap-2">
-              <MapPinIcon className="w-4 h-4 text-primary-600 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-1.5">
+              <MapPinIcon className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
               <span>Sai Nagar, Badnera Road, Amravati</span>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Button
-              href="/contact/"
-              variant="whatsapp"
-              fullWidth
-              size="md"
-              icon={<WhatsAppIcon className="w-5 h-5" />}
+          <div className="space-y-2 pt-1">
+            <a
+              href={phoneHref}
               onClick={onClose}
+              className="w-full inline-flex items-center justify-center gap-2 border-[1.5px] border-primary text-primary font-bold text-sm py-2 px-4 rounded-full hover:bg-primary-soft transition"
             >
-              {t.nav.inquireWhatsApp}
-            </Button>
+              <PhoneIcon className="w-4 h-4 text-primary shrink-0" />
+              <span>Call {salonConfig.contact.phoneDisplay}</span>
+            </a>
+
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClose}
+              className="w-full inline-flex items-center justify-center gap-2 bg-whatsapp text-white font-bold text-sm py-2.5 px-4 rounded-full shadow-wa-btn hover:bg-whatsapp-hover transition"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-current shrink-0" />
+              <span>{t.nav.inquireWhatsApp}</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
   );
 };
-

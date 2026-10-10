@@ -17,16 +17,15 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   className = '',
 }) => {
   return (
-    <Card className={`text-center py-12 px-6 max-w-xl mx-auto border-dashed border-2 border-cream-300 ${className}`}>
-      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center">
+    <Card hoverEffect className={`reveal text-center py-8 px-5 max-w-lg mx-auto bg-white/95 border border-cream-200/90 shadow-warm ${className}`}>
+      <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-primary-soft text-primary flex items-center justify-center">
         {icon}
       </div>
-      <h3 className="text-xl font-bold text-slate-900 mb-2">{title}</h3>
-      <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 max-w-md mx-auto">
+      <h3 className="font-serif text-lg sm:text-xl font-bold text-ink mb-1">{title}</h3>
+      <p className="text-muted text-xs sm:text-sm leading-relaxed mb-4 max-w-sm mx-auto">
         {description}
       </p>
       {action && <div className="flex justify-center">{action}</div>}
     </Card>
   );
 };
-

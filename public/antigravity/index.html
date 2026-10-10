@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shraddha Beauty Parlour — Ethereal Anti-Gravity Experience</title>
+  <meta name="description" content="Step into an ethereal, anti-gravity luxury salon experience at Shraddha Beauty Parlour in Sai Nagar, Amravati. Female-only hair, skin, bridal makeup, and nail artistry.">
+  <link rel="icon" href="../favicon.ico">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- External Libraries (Three.js, GSAP, Lucide Icons) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- WebGL Background Canvas Container -->
+  <div id="webgl-container"></div>
+
+  <!-- Ambient Light Halos -->
+  <div class="ambient-halo halo-1"></div>
+  <div class="ambient-halo halo-2"></div>
+  <div class="ambient-halo halo-3"></div>
+
+  <!-- Main UI Overlay -->
+  <div class="ui-wrapper">
+
+    <!-- Floating Navigation Bar -->
+    <header class="navbar-container">
+      <nav class="glass-navbar">
+        <a href="#" class="brand-logo">
+          <span class="logo-sparkle">✦</span>
+          <div class="logo-text">
+            <span class="brand-name">Shraddha</span>
+            <span class="brand-sub">Beauty Parlour</span>
+          </div>
+        </a>
+
+        <!-- Nav Links -->
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active" data-i18n="nav_home">Home</a></li>
+          <li><a href="#services" class="nav-link" data-i18n="nav_services">Services</a></li>
+          <li><a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a></li>
+          <li><a href="#location" class="nav-link" data-i18n="nav_location">Location</a></li>
+        </ul>
+
+        <!-- Right Actions -->
+        <div class="nav-actions">
+          <div class="female-badge">
+            <i data-lucide="sparkles"></i>
+            <span data-i18n="female_only_badge">Female-Only Sanctuary</span>
+          </div>
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="mr">मराठी</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+          </div>
+
+          <button class="cta-glass-btn open-modal-btn">
+            <span data-i18n="cta_book">Book Experience</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <!-- Floating Header Pill -->
+        <div class="eyebrow-pill gsap-float-slow">
+          <span class="pill-dot"></span>
+          <span data-i18n="hero_eyebrow">Sai Nagar, Amravati • Weightless Beauty Realm</span>
+        </div>
+
+        <h1 class="hero-title gsap-float-subtle">
+          <span class="title-line-1" data-i18n="hero_title_1">Beauty Without</span>
+          <span class="title-line-2 gradient-gold-text" data-i18n="hero_title_2">Gravity</span>
+        </h1>
+
+        <p class="hero-description gsap-float-subtle" data-i18n="hero_desc">
+          Immerse yourself in an ethereal sanctuary of royal hair artistry, radiant skin elixirs, and bespoke bridal luxury tailored exclusively for women.
+        </p>
+
+        <!-- CTA Action Group -->
+        <div class="hero-actions gsap-float-subtle">
+          <button class="primary-gold-btn open-modal-btn">
+            <i data-lucide="calendar"></i>
+            <span data-i18n="hero_primary_cta">Inquire on WhatsApp</span>
+          </button>
+          <a href="#services" class="secondary-glass-btn">
+            <span data-i18n="hero_secondary_cta">Explore Treatments</span>
+            <i data-lucide="chevron-down"></i>
+          </a>
+        </div>
+
+        <!-- Floating Stats Mirror Bar -->
+        <div class="hero-stats-bar glass-panel gsap-float-yoyo-1">
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label" data-i18n="stat_female">Female Privacy</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">9 AM–9 PM</span>
+            <span class="stat-label" data-i18n="stat_hours">Open All Days</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">Bespoke</span>
+            <span class="stat-label" data-i18n="stat_consultation">Personal Care</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero 3D Floating Product Stage -->
+      <div class="hero-product-stage">
+        <!-- Floating Glass Mirror Card 1 -->
+        <div class="floating-product-card glass-panel float-card-1 gsap-float-yoyo-1">
+          <div class="product-image-wrapper">
+            <img src="../images/antigravity/luxury_serum_bottle_1790960094596.jpg" alt="Rose Gold Serum Bottle" class="product-img">
+            <div class="glow-orb"></div>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Ethereal Care</span>
+            <h4 class="product-title">Rose Elixir Treatment</h4>
+          </div>
+        </div>
+
+        <!-- Floating Glass Mirror Card 2 -->
+        <div class="floating-product-card glass-panel float-card-2 gsap-float-yoyo-2">
+          <div class="product-image-wrapper">
+            <img src="../images/antigravity/cosmetic_cream_jar_1790960126171.jpg" alt="Cosmetic Cream Jar" class="product-img">
+            <div class="glow-orb gold-glow"></div>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Skin Radiance</span>
+            <h4 class="product-title">Royal Diamond Facial</h4>
+          </div>
+        </div>
+
+        <!-- Floating Glass Mirror Card 3 -->
+        <div class="floating-product-card glass-panel float-card-3 gsap-float-yoyo-3">
+          <div class="product-image-wrapper">
+            <img src="../images/antigravity/rose_quartz_roller_1790960151056.jpg" alt="Rose Quartz Roller" class="product-img">
+            <div class="glow-orb violet-glow"></div>
+          </div>
+          <div class="product-info">
+            <span class="product-tag">Zero-Gravity Spa</span>
+            <h4 class="product-title">Quartz Lifting Therapy</h4>
+          </div>
+        </div>
+
+        <!-- Floating Glass Orbs -->
+        <div class="glass-sphere sphere-1 gsap-float-yoyo-2"></div>
+        <div class="glass-sphere sphere-2 gsap-float-yoyo-3"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION (FLOATING GLASS MIRRORS) -->
+    <section id="services" class="section-container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow" data-i18n="services_eyebrow">✦ Bespoke Beauty Catalog ✦</span>
+        <h2 class="section-title gradient-gold-text" data-i18n="services_title">Curated Ethereal Services</h2>
+        <p class="section-subtitle" data-i18n="services_subtitle">Every treatment is crafted with meticulous care in a calm, female-only setting.</p>
+      </div>
+
+      <!-- Pricing Notice Banner -->
+      <div class="glass-notice-banner gsap-float-subtle">
+        <i data-lucide="info"></i>
+        <p data-i18n="pricing_notice">
+          <strong>Consultation-Based Pricing:</strong> Service prices are customized to your individual hair and skin needs. Contact us directly on WhatsApp for inquiries.
+        </p>
+      </div>
+
+      <!-- Service Cards Grid -->
+      <div class="services-grid">
+
+        <!-- Service 1: Hair Artistry -->
+        <div class="service-card glass-panel gsap-float-yoyo-1">
+          <div class="card-icon-header">
+            <div class="icon-glass-box"><i data-lucide="scissors"></i></div>
+            <span class="category-pill">Hair Care</span>
+          </div>
+          <h3 class="service-name">Royal Hair Artistry & Spa</h3>
+          <p class="service-desc">Precision haircutting, couture styling, vibrant hair coloring, deep nourishing spa treatments, and anti-frizz smoothing.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Haircut & Blowdry Styling</li>
+            <li><i data-lucide="check"></i> Deep Botanical Spa & Repair</li>
+            <li><i data-lucide="check"></i> Fashion Hair Coloring</li>
+          </ul>
+          <button class="service-cta-btn open-modal-btn" data-service="Hair Artistry & Spa">
+            <span>Inquire for Hair</span>
+            <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+
+        <!-- Service 2: Bridal & Makeup -->
+        <div class="service-card glass-panel gsap-float-yoyo-2">
+          <div class="card-icon-header">
+            <div class="icon-glass-box"><i data-lucide="crown"></i></div>
+            <span class="category-pill gold-pill">Bridal Specialty</span>
+          </div>
+          <h3 class="service-name">Couture Bridal & Party Makeup</h3>
+          <p class="service-desc">Ethereal HD makeup looks tailored for brides, engagements, festive receptions, and glamour events with lasting radiance.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Royal Bridal Makeover</li>
+            <li><i data-lucide="check"></i> Engagement & Sagan Makeup</li>
+            <li><i data-lucide="check"></i> Glamour Party Styling</li>
+          </ul>
+          <button class="service-cta-btn open-modal-btn" data-service="Bridal & Party Makeup">
+            <span>Inquire for Makeup</span>
+            <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+
+        <!-- Service 3: Skin Elixirs & Facials -->
+        <div class="service-card glass-panel gsap-float-yoyo-3">
+          <div class="card-icon-header">
+            <div class="icon-glass-box"><i data-lucide="sparkles"></i></div>
+            <span class="category-pill">Skin Care</span>
+          </div>
+          <h3 class="service-name">Radiance Facials & Skin Cleanup</h3>
+          <p class="service-desc">Custom facial treatments, deep detox cleanups, and organic glow treatments designed to restore smooth, luminous skin.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Diamond & Gold Radiance Facial</li>
+            <li><i data-lucide="check"></i> Herbal Hydrating Cleanup</li>
+            <li><i data-lucide="check"></i> Skin Brightening & Bleach</li>
+          </ul>
+          <button class="service-cta-btn open-modal-btn" data-service="Skin Facials & Cleanup">
+            <span>Inquire for Skin</span>
+            <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+
+        <!-- Service 4: Nail Art & Manicure -->
+        <div class="service-card glass-panel gsap-float-yoyo-1">
+          <div class="card-icon-header">
+            <div class="icon-glass-box"><i data-lucide="hand"></i></div>
+            <span class="category-pill">Nail Care</span>
+          </div>
+          <h3 class="service-name">Luxury Manicure, Pedicure & Nail Art</h3>
+          <p class="service-desc">Nourishing spa manicures and pedicures paired with intricate nail art, gel polish extensions, and cuticle restoration.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Spa Manicure & Pedicure</li>
+            <li><i data-lucide="check"></i> Custom Gel Nail Art</li>
+            <li><i data-lucide="check"></i> Cuticle Hydration Care</li>
+          </ul>
+          <button class="service-cta-btn open-modal-btn" data-service="Nail Art & Spa Care">
+            <span>Inquire for Nails</span>
+            <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+
+        <!-- Service 5: Threading & Waxing -->
+        <div class="service-card glass-panel gsap-float-yoyo-2">
+          <div class="card-icon-header">
+            <div class="icon-glass-box"><i data-lucide="heart"></i></div>
+            <span class="category-pill">Essentials</span>
+          </div>
+          <h3 class="service-name">Precision Threading & Gentle Waxing</h3>
+          <p class="service-desc">Gentle, precise facial threading for eyebrows, upper lip, and full face, alongside smooth hygienic body waxing.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Eyebrow Shaping & Threading</li>
+            <li><i data-lucide="check"></i> Full Face Threading</li>
+            <li><i data-lucide="check"></i> Smooth Body Waxing</li>
+          </ul>
+          <button class="service-cta-btn open-modal-btn" data-service="Threading & Waxing Essentials">
+            <span>Inquire for Threading</span>
+            <i data-lucide="arrow-up-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ANTI-GRAVITY EXPERIENCE HIGHLIGHTS -->
+    <section id="experience" class="section-container">
+      <div class="glass-hero-banner glass-panel gsap-float-subtle">
+        <div class="banner-content">
+          <span class="section-eyebrow">✦ Why Choose Shraddha ✦</span>
+          <h2 class="banner-title gradient-gold-text">An Atmosphere of Unrivaled Serenity</h2>
+          <p class="banner-desc">
+            Located in Sai Nagar, Amravati, our parlour provides a serene, private environment built solely around female comfort, hygiene, and personalized aesthetic care.
+          </p>
+
+          <div class="experience-features-grid">
+            <div class="exp-feature-box">
+              <div class="exp-icon"><i data-lucide="shield-check"></i></div>
+              <h4>100% Female Privacy</h4>
+              <p>Exclusive space reserved strictly for women and girls.</p>
+            </div>
+            <div class="exp-feature-box">
+              <div class="exp-icon"><i data-lucide="clock"></i></div>
+              <h4>9 AM to 9 PM Daily</h4>
+              <p>Flexible operating hours every day of the week.</p>
+            </div>
+            <div class="exp-feature-box">
+              <div class="exp-icon"><i data-lucide="sparkle"></i></div>
+              <h4>Bespoke Consultation</h4>
+              <p>Personalized attention for every skin and hair type.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION & CONTACT SECTION -->
+    <section id="location" class="section-container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">✦ Find Our Sanctuary ✦</span>
+        <h2 class="section-title gradient-gold-text">Sai Nagar, Amravati</h2>
+        <p class="section-subtitle">Conveniently located near Badnera Road with easy accessibility for local residents.</p>
+      </div>
+
+      <div class="location-grid">
+        <!-- Location Details Glass Mirror -->
+        <div class="location-card glass-panel gsap-float-yoyo-1">
+          <h3 class="location-card-title">Business Information</h3>
+
+          <div class="info-row">
+            <div class="info-icon"><i data-lucide="map-pin"></i></div>
+            <div class="info-text">
+              <strong>Address</strong>
+              <p>Plot No. 7, House No. 2270, Vrundavan Vasahat, Badnera Road, MH MSH 6, Dande Colony, Guruchhaya Colony, Sai Nagar, Amravati, Maharashtra 444607</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon"><i data-lucide="clock"></i></div>
+            <div class="info-text">
+              <strong>Operating Hours</strong>
+              <p>Monday – Sunday: 9:00 AM – 9:00 PM (All Days)</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon"><i data-lucide="phone"></i></div>
+            <div class="info-text">
+              <strong>Direct Inquiries</strong>
+              <p>Contact us directly via WhatsApp for appointments and pricing consultations.</p>
+            </div>
+          </div>
+
+          <div class="card-action-bar">
+            <a href="https://maps.google.com/?q=Sai+Nagar+Amravati+Maharashtra+444607" target="_blank" rel="noopener noreferrer" class="directions-btn">
+              <i data-lucide="navigation"></i>
+              <span>Get Directions</span>
+            </a>
+            <button class="whatsapp-direct-btn open-modal-btn">
+              <i data-lucide="message-circle"></i>
+              <span>WhatsApp Inquiry</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Google Maps Embed Glass Frame -->
+        <div class="map-frame-card glass-panel gsap-float-yoyo-2">
+          <div class="map-glass-header">
+            <span><i data-lucide="map"></i> Sai Nagar Area View</span>
+            <span class="map-badge">Amravati, MH</span>
+          </div>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3727.6748493035887!2d77.7450!3d20.9250!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a4c211111111%3A0x1111111111111111!2sSai%20Nagar%2C%20Amravati%2C%20Maharashtra%20444607!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="340" 
+            style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Shraddha Beauty Parlour Location Map">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-container">
+      <div class="footer-glass glass-panel">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="logo-sparkle">✦</span>
+            <h3>Shraddha Beauty Parlour</h3>
+            <p>Female-only beauty parlour in Sai Nagar, Amravati offering royal hair styling, skin facials, bridal makeup, and nail art.</p>
+          </div>
+
+          <div class="footer-nav">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#services">Services Catalog</a></li>
+              <li><a href="#experience">Salon Highlights</a></li>
+              <li><a href="#location">Directions & Hours</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-hours">
+            <h4>Working Hours</h4>
+            <p>9:00 AM – 9:00 PM</p>
+            <p>Open All 7 Days a Week</p>
+            <span class="female-only-text">🌸 Exclusively for Women & Girls</span>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Shraddha Beauty Parlour. All rights reserved. • Sai Nagar, Amravati, Maharashtra 444607</p>
+          <p class="disclaimer-text">Note: All appointment inquiries submitted via WhatsApp are subject to final confirmation by the parlour.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- INTERACTIVE WEIGHTLESS APPOINTMENT MODAL -->
+  <div id="appointment-modal" class="modal-overlay">
+    <div class="modal-glass-container glass-panel">
+      <button class="modal-close-btn" id="close-modal-btn">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="modal-header">
+        <div class="modal-sparkle"><i data-lucide="sparkles"></i></div>
+        <h3>Book Ethereal Experience</h3>
+        <p>Compose your appointment inquiry. Clicking submit will open WhatsApp with your pre-filled message.</p>
+      </div>
+
+      <form id="whatsapp-inquiry-form" class="modal-form">
+        <div class="form-group">
+          <label for="client-name">Your Full Name</label>
+          <input type="text" id="client-name" required placeholder="e.g. Priya Sharma">
+        </div>
+
+        <div class="form-group">
+          <label for="service-select">Desired Service</label>
+          <select id="service-select" required>
+            <option value="">-- Select a Treatment --</option>
+            <option value="Hair Artistry & Spa">Hair Artistry & Botanical Spa</option>
+            <option value="Bridal & Party Makeup">Couture Bridal & Party Makeup</option>
+            <option value="Skin Facials & Cleanup">Radiance Facial & Skin Cleanup</option>
+            <option value="Nail Art & Spa Care">Luxury Manicure, Pedicure & Nail Art</option>
+            <option value="Threading & Waxing Essentials">Threading & Waxing Essentials</option>
+            <option value="General Consultation">General Consultation / Inquiry</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="preferred-date">Preferred Date</label>
+            <input type="date" id="preferred-date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="preferred-time">Preferred Time Slot</label>
+            <select id="preferred-time" required>
+              <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+              <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+              <option value="Evening (4 PM - 9 PM)">Evening (4 PM - 9 PM)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="special-notes">Special Requests / Questions (Optional)</label>
+          <textarea id="special-notes" rows="2" placeholder="Any specific requirements or skin sensitivity details..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-whatsapp-btn">
+          <i data-lucide="message-square"></i>
+          <span>Send Inquiry via WhatsApp</span>
+        </button>
+
+        <p class="form-disclaimer">
+          <i data-lucide="shield"></i> Appointments are confirmed directly by the parlour team upon reviewing your message.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- App Logic Script -->
+  <script src="app.js"></script>
+</body>
+</html>

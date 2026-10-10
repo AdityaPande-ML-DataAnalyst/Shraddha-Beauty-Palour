@@ -12,11 +12,11 @@ export default function TestimonialsPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="py-12 sm:py-20 bg-cream-50/50">
+    <div className="py-8 sm:py-12 bg-cream-50/50">
       <Container>
         <SectionHeader
           badge={
-            <span className="text-xs font-semibold text-primary-700 uppercase tracking-wider bg-primary-50 px-3.5 py-1 rounded-full border border-primary-200">
+            <span className="text-[11px] font-semibold text-primary-800 uppercase tracking-wider bg-primary-50 px-3 py-0.5 rounded-full border border-primary-200">
               Client Experiences
             </span>
           }
@@ -24,17 +24,17 @@ export default function TestimonialsPage() {
           subtitle={t.testimonialsPage.pageSubtitle}
         />
 
-        <div className="py-8">
+        <div className="py-4">
           <EmptyState
-            icon={<MessageSquareQuoteIcon className="w-8 h-8" />}
+            icon={<MessageSquareQuoteIcon className="w-6 h-6" />}
             title={t.testimonialsPage.emptyTitle}
             description={t.testimonialsPage.emptyDescription}
             action={
               <Button
                 href="/services/"
                 variant="primary"
-                size="md"
-                icon={<ArrowRightIcon className="w-4 h-4" />}
+                size="sm"
+                icon={<ArrowRightIcon className="w-3.5 h-3.5" />}
               >
                 {t.testimonialsPage.emptyAction}
               </Button>
@@ -45,4 +45,3 @@ export default function TestimonialsPage() {
     </div>
   );
 }
-

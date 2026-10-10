@@ -2,99 +2,87 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { serviceCategories } from '@/content/services.data';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Container } from '@/components/ui/Container';
-import { SectionHeader } from '@/components/ui/SectionHeader';
-import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import {
-  ScissorsIcon,
-  SparklesIcon,
-  ArrowRightIcon,
-} from '@/components/ui/Icons';
 
 export const ServicePreview: React.FC = () => {
   const { t } = useTranslation();
 
+  const services = [
+    {
+      id: 'hair',
+      emoji: '💇‍♀️',
+      name: 'Hair',
+      desc: 'Cut, styling, colour, spa & treatment',
+    },
+    {
+      id: 'makeup',
+      emoji: '💄',
+      name: 'Makeup',
+      desc: 'Bridal, party & engagement',
+    },
+    {
+      id: 'skin',
+      emoji: '✨',
+      name: 'Skin',
+      desc: 'Facial, cleanup & bleach',
+    },
+    {
+      id: 'nails',
+      emoji: '💅',
+      name: 'Nails',
+      desc: 'Manicure, pedicure & nail art',
+    },
+    {
+      id: 'other',
+      emoji: '🪡',
+      name: 'Other',
+      desc: 'Threading & waxing',
+    },
+  ];
+
   return (
-    <section className="py-16 sm:py-24 bg-cream-50/50 border-y border-cream-200">
-      <Container>
-        <SectionHeader
-          badge={
-            <span className="text-xs font-semibold text-secondary-800 uppercase tracking-wider bg-secondary-100/60 px-3 py-1 rounded-full border border-secondary-200">
-              Services
-            </span>
-          }
-          title={t.home.categoriesTitle}
-          subtitle={t.home.categoriesSubtitle}
-        />
+    <section id="services" className="py-16 sm:py-20 bg-white">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
+        <div className="text-center mb-11 reveal">
+          <span className="text-xs font-extrabold tracking-[0.12em] uppercase text-gold block mb-2">
+            What We Offer
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[40px] font-semibold text-ink mb-3">
+            {t.home.categoriesTitle}
+          </h2>
+          <p className="text-muted text-[15px] max-w-[560px] mx-auto leading-relaxed">
+            Hair, makeup, skin, nails and more — tailored to you, with pricing shared during consultation.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {serviceCategories.map((category) => (
-            <Card
-              key={category.id}
-              hoverEffect
-              className="flex flex-col justify-between p-6 sm:p-7 bg-white"
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4">
+          {services.map((item, idx) => (
+            <Link
+              key={item.id}
+              href="/services/"
+              style={{ transitionDelay: `${idx * 80}ms` }}
+              className="reveal group bg-cream border border-transparent rounded-[18px] p-6 text-center transition-all duration-300 ease-out cursor-pointer hover:-translate-y-1 hover:bg-primary hover:border-primary hover:shadow-lg hover:shadow-primary-900/10"
             >
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-primary-50 text-primary-700 flex items-center justify-center">
-                  {category.id === 'hair' ? (
-                    <ScissorsIcon className="w-6 h-6" />
-                  ) : (
-                    <SparklesIcon className="w-6 h-6" />
-                  )}
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 capitalize">
-                    {category.name}
-                  </h3>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">
-                    {category.services.length} Specialized Treatments
-                  </p>
-                </div>
-
-                <ul className="space-y-2 text-sm text-slate-600 pt-2 border-t border-cream-100">
-                  {category.services.slice(0, 3).map((item) => (
-                    <li key={item.id} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary-600" />
-                      <span>{item.name}</span>
-                    </li>
-                  ))}
-                  {category.services.length > 3 && (
-                    <li className="text-xs text-primary-700 font-semibold pt-1">
-                      + {category.services.length - 3} more treatments
-                    </li>
-                  )}
-                </ul>
+              <div className="text-[30px] mb-3 select-none transition-transform duration-300 group-hover:scale-110">
+                {item.emoji}
               </div>
-
-              <div className="pt-6 mt-6 border-t border-cream-100">
-                <Link
-                  href="/services/"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
-                >
-                  <span>View {category.name} Services</span>
-                  <ArrowRightIcon className="w-4 h-4" />
-                </Link>
-              </div>
-            </Card>
+              <h3 className="text-[14.5px] font-bold text-ink mb-1.5 group-hover:text-white transition-colors">
+                {item.name}
+              </h3>
+              <p className="text-[11.5px] text-muted group-hover:text-white/90 transition-colors leading-relaxed">
+                {item.desc}
+              </p>
+            </Link>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Button
-            href="/services/"
-            variant="outline"
-            size="lg"
-            icon={<ArrowRightIcon className="w-4 h-4" />}
-          >
-            {t.common.exploreServices}
-          </Button>
-        </div>
-      </Container>
+        <p
+          className="reveal mt-7 text-center text-xs sm:text-[12.5px] text-muted bg-primary-soft rounded-xl p-3.5 sm:p-4 max-w-[640px] mx-auto border border-[#f2d7dc] leading-relaxed"
+          style={{ transitionDelay: '200ms' }}
+        >
+          {t.common.pricingNoticeBody}
+        </p>
+      </div>
     </section>
   );
 };
-

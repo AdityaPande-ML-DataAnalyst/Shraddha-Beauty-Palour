@@ -7,6 +7,8 @@ import { Container } from '@/components/ui/Container';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Accordion, AccordionItemData } from '@/components/ui/Accordion';
 import { Card } from '@/components/ui/Card';
+import { salonConfig } from '@/config/salon.config';
+import { getWhatsAppHref } from '@/utils/contact';
 import { Button } from '@/components/ui/Button';
 import { WhatsAppIcon } from '@/components/ui/Icons';
 
@@ -20,11 +22,11 @@ export default function FaqPage() {
   }));
 
   return (
-    <div className="py-12 sm:py-20 bg-cream-50/50">
+    <div className="py-8 sm:py-12 bg-cream-50/50">
       <Container>
         <SectionHeader
           badge={
-            <span className="text-xs font-semibold text-primary-700 uppercase tracking-wider bg-primary-50 px-3.5 py-1 rounded-full border border-primary-200">
+            <span className="text-[11px] font-semibold text-primary uppercase tracking-wider bg-primary-soft px-3 py-0.5 rounded-full border border-primary-200">
               Common Questions
             </span>
           }
@@ -32,24 +34,31 @@ export default function FaqPage() {
           subtitle={t.faqPage.pageSubtitle}
         />
 
-        <div className="max-w-3xl mx-auto space-y-12">
+        <div className="max-w-2xl mx-auto space-y-6">
           {/* Accessible Accordion */}
           <Accordion items={accordionItems} defaultOpenId="faq-female-only" />
 
           {/* More Questions Box */}
-          <Card className="p-8 text-center bg-white border border-cream-200 space-y-4">
-            <h3 className="text-xl font-bold text-slate-900">
+          <Card
+            hoverEffect
+            className="reveal p-5 text-center bg-white/95 border border-cream-200/90 space-y-2.5"
+            style={{ transitionDelay: '300ms' }}
+          >
+            <h3 className="font-serif text-lg font-bold text-ink">
               {t.faqPage.moreQuestionsTitle}
             </h3>
-            <p className="text-sm sm:text-base text-slate-600 max-w-md mx-auto leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
               {t.faqPage.moreQuestionsDesc}
             </p>
-            <div className="pt-2 flex justify-center">
+            <div className="pt-1 flex justify-center">
               <Button
-                href="/contact/"
+                href={getWhatsAppHref(
+                  `Hello ${salonConfig.name},\n\nI have a question regarding parlour services.`
+                )}
+                isExternal
                 variant="whatsapp"
-                size="md"
-                icon={<WhatsAppIcon className="w-4 h-4" />}
+                size="sm"
+                icon={<WhatsAppIcon className="w-3.5 h-3.5 fill-current" />}
               >
                 {t.nav.inquireWhatsApp}
               </Button>
@@ -60,4 +69,3 @@ export default function FaqPage() {
     </div>
   );
 }
-

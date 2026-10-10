@@ -1,128 +1,118 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 import { salonConfig } from '@/config/salon.config';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Container } from '@/components/ui/Container';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
-import {
-  WhatsAppIcon,
-  SparklesIcon,
-  ClockIcon,
-  MapPinIcon,
-  ArrowRightIcon,
-} from '@/components/ui/Icons';
+import { WhatsAppIcon, SparklesIcon } from '@/components/ui/Icons';
+import { getWhatsAppHref } from '@/utils/contact';
 
 export const HeroSection: React.FC = () => {
   const { t } = useTranslation();
+  const whatsappHref = getWhatsAppHref();
+
+  const renderStyledHeadline = (headline: string) => {
+    const trimmed = headline.trim();
+    const lastSpaceIndex = trimmed.lastIndexOf(' ');
+    if (lastSpaceIndex === -1) {
+      return <em className="italic text-primary">{trimmed}</em>;
+    }
+    const firstPart = trimmed.substring(0, lastSpaceIndex);
+    const lastWord = trimmed.substring(lastSpaceIndex + 1);
+    return (
+      <>
+        {firstPart} <em className="italic text-primary">{lastWord}</em>
+      </>
+    );
+  };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white to-cream-50 pt-10 pb-16 sm:pt-16 sm:pb-24">
-      {/* Decorative background glows */}
+    <section
+      id="home"
+      className="relative py-16 sm:py-24 lg:py-28 overflow-hidden bg-cream"
+    >
       <div
-        className="absolute top-0 right-1/4 w-96 h-96 bg-primary-100/40 rounded-full blur-3xl pointer-events-none -z-10"
+        className="absolute -top-24 -right-24 sm:-top-32 sm:-right-32 w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-full bg-[radial-gradient(circle,#FDF2F4_0%,transparent_70%)] pointer-events-none -z-0"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 left-1/4 w-96 h-96 bg-secondary-100/30 rounded-full blur-3xl pointer-events-none -z-10"
+        className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-[radial-gradient(circle,#FDF2F4_0%,transparent_70%)] pointer-events-none -z-0 opacity-60"
         aria-hidden="true"
       />
 
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Copy & Actions */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Female Only Tag */}
-            <div>
-              <Badge variant="primary" className="py-1.5 px-4 text-xs sm:text-sm font-semibold shadow-sm">
-                <SparklesIcon className="w-4 h-4 text-primary-600" />
-                <span>{t.home.heroBadge}</span>
-              </Badge>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] font-sans">
-              {t.home.heroHeadline}
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              {t.home.heroSubheadline}
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
-              <Button
-                href="/contact/"
-                variant="whatsapp"
-                size="lg"
-                icon={<WhatsAppIcon className="w-5 h-5" />}
-              >
-                {t.nav.inquireWhatsApp}
-              </Button>
-
-              <Button
-                href="/services/"
-                variant="outline"
-                size="lg"
-                icon={<ArrowRightIcon className="w-4 h-4" />}
-              >
-                {t.common.exploreServices}
-              </Button>
-            </div>
-
-            {/* Trust Highlights Strip */}
-            <div className="pt-6 border-t border-cream-200 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
-              <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white border border-cream-200 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-                  <SparklesIcon className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-slate-900 block">Female-Only</span>
-                  <span className="text-[11px] text-slate-500">Exclusively for women</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white border border-cream-200 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-                  <ClockIcon className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-slate-900 block">9:00 AM – 9:00 PM</span>
-                  <span className="text-[11px] text-slate-500">Open all 7 days</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white border border-cream-200 shadow-sm">
-                <div className="w-8 h-8 rounded-lg bg-primary-50 text-primary-700 flex items-center justify-center shrink-0">
-                  <MapPinIcon className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-slate-900 block">Sai Nagar</span>
-                  <span className="text-[11px] text-slate-500">Amravati, MH</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Branded Graphic Card */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-md sm:max-w-lg aspect-[6/5]">
-              <Image
-                src="/images/hero/hero-illustration.svg"
-                alt="Shraddha Beauty Parlour - Beauty, Style & Confidence in Sai Nagar, Amravati"
-                fill
-                unoptimized
-                priority
-                className="object-contain"
-              />
-            </div>
-          </div>
+      <div className="max-w-[780px] mx-auto text-center px-4 sm:px-6 relative z-10">
+        <div
+          className="reveal inline-flex items-center gap-1.5 text-[11.5px] font-bold tracking-[0.04em] uppercase text-primary bg-primary-soft border border-[#f2d7dc] px-3.5 py-1.5 rounded-full mb-5"
+          style={{ transitionDelay: '50ms' }}
+        >
+          <SparklesIcon className="w-3.5 h-3.5 text-primary" />
+          <span>{t.home.heroBadge}</span>
         </div>
-      </Container>
+
+        <h1
+          className="reveal font-serif font-semibold text-ink text-4xl sm:text-5xl lg:text-[64px] leading-[1.08] mb-5 tracking-tight"
+          style={{ transitionDelay: '150ms' }}
+        >
+          {renderStyledHeadline(t.home.heroHeadline)}
+        </h1>
+
+        <p
+          className="reveal text-muted text-base sm:text-[17px] leading-[1.7] max-w-[560px] mx-auto mb-9"
+          style={{ transitionDelay: '250ms' }}
+        >
+          {t.home.heroSubheadline}
+        </p>
+
+        <div
+          className="reveal flex gap-3.5 justify-center flex-wrap mb-11"
+          style={{ transitionDelay: '350ms' }}
+        >
+          {whatsappHref.startsWith('http') ? (
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-whatsapp text-white font-bold text-[13.5px] sm:text-[14px] px-6 py-3 rounded-full shadow-wa-btn hover:-translate-y-0.5 hover:bg-whatsapp-hover transition-all duration-200"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-current" />
+              <span>{t.nav.inquireWhatsApp}</span>
+            </a>
+          ) : (
+            <Link
+              href={whatsappHref}
+              className="inline-flex items-center gap-2 bg-whatsapp text-white font-bold text-[13.5px] sm:text-[14px] px-6 py-3 rounded-full shadow-wa-btn hover:-translate-y-0.5 hover:bg-whatsapp-hover transition-all duration-200"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-current" />
+              <span>{t.nav.inquireWhatsApp}</span>
+            </Link>
+          )}
+
+          <Link
+            href="/services/"
+            className="inline-flex items-center gap-2 border-[1.5px] border-primary text-primary font-bold text-[13.5px] sm:text-[14px] px-6 py-3 rounded-full hover:bg-primary-soft hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <span>{t.common.exploreServices}</span>
+          </Link>
+        </div>
+
+        <div
+          className="reveal flex gap-6 sm:gap-8 justify-center flex-wrap text-xs sm:text-[13px] text-muted font-semibold"
+          style={{ transitionDelay: '450ms' }}
+        >
+          <span className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
+            <span>{t.common.femaleOnlyBadge}</span>
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
+            <span>{salonConfig.hours.days}</span>
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
+            <span>{salonConfig.hours.timing}</span>
+          </span>
+        </div>
+      </div>
     </section>
   );
 };
-

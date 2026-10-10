@@ -15,11 +15,11 @@ export const salonConfig: SalonConfig = {
       'Plot No. 7, House No. 2270, Vrundavan Vasahat, Badnera Road, MH MSH 6, Dande Colony, Guruchhaya Colony, Sai Nagar, Amravati, Maharashtra 444607',
   },
   contact: {
-    phoneDisplay: '+91 xxxxxxxxx',
-    isPhonePlaceholder: true, // Safeguard: prevents misdialing while number is pending
-    phoneDial: '', // Empty while pending to prevent accidental dials
-    whatsappDisplay: '+91 xxxxxxxxx',
-    whatsappNumber: '', // Configurable: when owner provides number, e.g., '919876543210'
+    phoneDisplay: '+91 9890159234',
+    isPhonePlaceholder: false,
+    phoneDial: '+919890159234',
+    whatsappDisplay: '+91 9890159234',
+    whatsappNumber: '919890159234',
     email: 'shraddhabeautyparlour.amravati@gmail.com',
   },
   hours: {
@@ -38,4 +38,3 @@ export const salonConfig: SalonConfig = {
       'https://maps.google.com/maps?q=Sai+Nagar,+Amravati,+Maharashtra+444607&t=&z=15&ie=UTF8&iwloc=&output=embed',
   },
 };
-

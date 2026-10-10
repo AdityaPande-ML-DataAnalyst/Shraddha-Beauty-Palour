@@ -19,11 +19,11 @@ export default function ContactPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="py-12 sm:py-20 bg-cream-50/50">
+    <div className="py-8 sm:py-12 bg-cream-50/50">
       <Container>
         <SectionHeader
           badge={
-            <span className="text-xs font-semibold text-primary-700 uppercase tracking-wider bg-primary-50 px-3.5 py-1 rounded-full border border-primary-200">
+            <span className="text-[11px] font-semibold text-primary-800 uppercase tracking-wider bg-primary-50 px-3 py-0.5 rounded-full border border-primary-200">
               Get In Touch
             </span>
           }
@@ -31,12 +31,12 @@ export default function ContactPage() {
           subtitle={t.contactPage.pageSubtitle}
         />
 
-        <div className="space-y-16">
+        <div className="space-y-8 max-w-6xl mx-auto">
           {/* Main 2-Column: Form & Info Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left: Interactive WhatsApp Inquiry Builder (7 cols) */}
             <div className="lg:col-span-7">
-              <Suspense fallback={<div className="p-8 text-center bg-white rounded-2xl border border-cream-200">Loading inquiry builder...</div>}>
+              <Suspense fallback={<div className="p-6 text-center bg-white rounded-xl border border-cream-200 text-xs">Loading inquiry builder...</div>}>
                 <ContactFormWithParams />
               </Suspense>
             </div>
@@ -48,7 +48,7 @@ export default function ContactPage() {
           </div>
 
           {/* Full Width Map Section with General Location Advisory */}
-          <div id="map" className="max-w-6xl mx-auto scroll-mt-24">
+          <div id="map" className="scroll-mt-20">
             <MapSection />
           </div>
         </div>
@@ -56,4 +56,3 @@ export default function ContactPage() {
     </div>
   );
 }
-

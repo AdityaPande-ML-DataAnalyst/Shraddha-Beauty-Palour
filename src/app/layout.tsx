@@ -1,12 +1,30 @@
 import type { Metadata, Viewport } from 'next';
 import { ReactNode } from 'react';
+import { Plus_Jakarta_Sans, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp';
+import { MobileActionBar } from '@/components/layout/MobileActionBar';
 import { SkipToContent } from '@/components/common/SkipToContent';
 import { JsonLd } from '@/components/common/JsonLd';
+import { ScrollRevealInit } from '@/components/common/ScrollRevealInit';
+import { AdminAuthProvider } from '@/context/AdminAuthContext';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-serif',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shraddha-beauty-parlour.vercel.app'),
@@ -80,22 +98,25 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} scroll-smooth`}>
       <head>
         <JsonLd />
       </head>
-      <body className="flex min-h-screen flex-col bg-cream-50 text-slate-900 font-sans">
-        <LanguageProvider>
-          <SkipToContent />
-          <Header />
-          <main id="main-content" className="flex-1 focus:outline-none">
-            {children}
-          </main>
-          <Footer />
-          <FloatingWhatsApp />
-        </LanguageProvider>
+      <body className="flex min-h-screen flex-col bg-cream text-ink font-sans">
+        <AdminAuthProvider>
+          <LanguageProvider>
+            <ScrollRevealInit />
+            <SkipToContent />
+            <Header />
+            <main id="main-content" className="flex-1 focus:outline-none pb-16 lg:pb-0">
+              {children}
+            </main>
+            <Footer />
+            <FloatingWhatsApp />
+            <MobileActionBar />
+          </LanguageProvider>
+        </AdminAuthProvider>
       </body>
     </html>
   );
 }
-

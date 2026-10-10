@@ -2,9 +2,6 @@
 
 import React from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Container } from '@/components/ui/Container';
-import { SectionHeader } from '@/components/ui/SectionHeader';
-import { Card } from '@/components/ui/Card';
 import {
   ShieldCheckIcon,
   SparklesIcon,
@@ -17,65 +14,50 @@ export const HighlightsSection: React.FC = () => {
 
   const highlights = [
     {
-      icon: <ShieldCheckIcon className="w-6 h-6" />,
+      icon: <ShieldCheckIcon className="w-5 h-5 text-primary" />,
       title: t.home.highlight1Title,
       description: t.home.highlight1Desc,
     },
     {
-      icon: <SparklesIcon className="w-6 h-6" />,
+      icon: <SparklesIcon className="w-5 h-5 text-primary" />,
       title: t.home.highlight2Title,
       description: t.home.highlight2Desc,
     },
     {
-      icon: <ClockIcon className="w-6 h-6" />,
+      icon: <ClockIcon className="w-5 h-5 text-primary" />,
       title: t.home.highlight3Title,
       description: t.home.highlight3Desc,
     },
     {
-      icon: <MapPinIcon className="w-6 h-6" />,
+      icon: <MapPinIcon className="w-5 h-5 text-primary" />,
       title: t.home.highlight4Title,
       description: t.home.highlight4Desc,
     },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white">
-      <Container>
-        <SectionHeader
-          badge={
-            <span className="text-xs font-semibold text-primary-700 uppercase tracking-wider bg-primary-50 px-3 py-1 rounded-full border border-primary-100">
-              Our Commitments
-            </span>
-          }
-          title={t.home.highlightsTitle}
-          subtitle={t.home.highlightsSubtitle}
-        />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <section className="py-12 sm:py-16 bg-cream">
+      <div className="max-w-[1180px] mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-[18px]">
           {highlights.map((item, idx) => (
-            <Card
+            <div
               key={idx}
-              hoverEffect
-              className="p-6 bg-cream-50/40 border border-cream-200 text-center sm:text-left flex flex-col justify-between"
+              style={{ transitionDelay: `${idx * 100}ms` }}
+              className="reveal bg-white border border-[#f1e5e8] rounded-[18px] p-5 sm:p-6 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-900/5 hover:border-primary-200/60"
             >
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-primary-100 text-primary-700 flex items-center justify-center mx-auto sm:mx-0">
-                  {item.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
+              <div className="w-11 h-11 mx-auto mb-3.5 rounded-xl bg-primary-soft flex items-center justify-center">
+                {item.icon}
               </div>
-            </Card>
+              <h3 className="text-[14px] sm:text-[14.5px] font-bold text-ink mb-1.5 leading-snug">
+                {item.title}
+              </h3>
+              <p className="text-xs sm:text-[12.5px] text-muted leading-relaxed">
+                {item.description}
+              </p>
+            </div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 };
-
