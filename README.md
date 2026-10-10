@@ -1,181 +1,144 @@
-# Shraddha Beauty Parlour — Official Website (Version 1.0)
+# Shraddha Beauty Parlour Website
 
-> **Female-Only Beauty Parlour in Sai Nagar, Amravati, Maharashtra, India**  
-> *"Beauty, Style & Confidence"*
+A modern, responsive website for **Shraddha Beauty Parlour**, located in Sai Nagar, Amravati, Maharashtra. The website helps customers explore salon services, view gallery images, learn about offers, and contact the parlour for appointment enquiries.
 
-A modern, fast, responsive, and multilingual (English, Marathi, Hindi) informational web application engineered with **Next.js App Router**, **TypeScript**, and **Tailwind CSS**. Built with a **pure static export architecture (`output: 'export'`)**, requiring **zero database, zero backend, and zero paid API keys**.
+## Features
 
----
+* **Home:** Introduction to Shraddha Beauty Parlour.
+* **About:** Information about the parlour.
+* **Services:** Overview of beauty and salon services.
+* **Gallery:** Displays salon images stored through Cloudinary, with image enlargement and swipe navigation.
+* **Offers:** Displays available offers.
+* **Testimonials:** Customer feedback section.
+* **FAQ:** Frequently asked questions.
+* **Contact:** Contact information, business hours, WhatsApp appointment enquiries, and Google Maps navigation.
+* **Admin panel:** Owner login and gallery image upload management.
+* **Responsive design:** Designed for desktop and mobile devices.
 
-## 🌸 Business Information (Verified V1 Baseline)
+## Technology Stack
 
-- **Business Name:** Shraddha Beauty Parlour
-- **Business Type:** Female-only Beauty Parlour (Exclusively for women and girls)
-- **Tagline:** Beauty, Style & Confidence
-- **Location:** Sai Nagar, Amravati, Maharashtra, India
-- **Address:** Plot No. 7, House No. 2270, Vrundavan Vasahat, Badnera Road, MH MSH 6, Dande Colony, Guruchhaya Colony, Sai Nagar, Amravati, Maharashtra 444607
-- **Email:** `shraddhabeautyparlour.amravati@gmail.com`
-- **Phone:** `+91 xxxxxxxxx` (Placeholder until verified contact number is supplied)
-- **Working Hours:** 9:00 AM – 9:00 PM (All days, Monday through Sunday)
-- **Pricing:** No prices listed; prices are consultation-based.
-- **Appointments:** Inquiries sent via formatted WhatsApp message builder. All appointments are subject to confirmation by the parlour.
+| Technology              | Purpose                        |
+| ----------------------- | ------------------------------ |
+| Next.js                 | Frontend framework             |
+| React                   | User interface                 |
+| TypeScript              | Type-safe development          |
+| Tailwind CSS            | Styling and responsive layouts |
+| Firebase Authentication | Admin authentication           |
+| Cloud Firestore         | Gallery metadata and records   |
+| Cloudinary              | Image hosting and uploads      |
+| Vercel                  | Website deployment             |
 
----
+## Business Information
 
-## 🚀 Key Features
+* **Business name:** Shraddha Beauty Parlour
+* **Location:** Sai Nagar, Amravati, Maharashtra, India
+* **Email:** [shraddhabeautyparlour.amravati@gmail.com](mailto:shraddhabeautyparlour.amravati@gmail.com)
+* **Business hours:** 9:00 AM – 9:00 PM, daily
 
-1. **100% Static Export (`output: 'export'`):** Compiles to pure HTML, CSS, and client-side JavaScript in the `out/` directory. Zero Node.js runtime required.
-2. **Static-Compatible Image Strategy:** Configured with `images: { unoptimized: true }` in `next.config.mjs`. All graphics are pre-optimized static assets served directly from `/public/images/`.
-3. **Multi-Platform Deployment Ready:**
-   - **GitHub Pages** (via GitHub Actions)
-   - **Cloudflare Pages** (Build command: `npm run build`, Output directory: `out`)
-   - **Netlify** (Publish directory: `out`)
-   - **Standard cPanel / Apache / Nginx Static Hosting** (Direct upload of `out/` contents to `public_html/`)
-4. **Trilingual Support (English, मराठी, हिंदी):**
-   - Type-safe translation dictionaries (`src/dictionaries/`) with zero third-party i18n overhead.
-   - Preserves user language preference in `localStorage`.
-   - Native Devanagari typography smoothing to prevent vowel marker clipping.
-5. **Interactive WhatsApp Appointment Builder:**
-   - Pre-fills customer name, selected service, preferred date, and preferred time slot.
-   - Built-in placeholder guard preventing broken WhatsApp links while the phone number is pending.
-   - Clear confirmation disclaimer informing clients that inquiries are subject to parlour confirmation.
-6. **Zero-API Google Maps Navigation:**
-   - Directions link opening Google Maps in a new tab using the verified postal address query.
-   - Unauthenticated responsive embed iframe with temporary location notice.
-7. **Complete Technical SEO & Accessibility:**
-   - `schema.org/BeautySalon` structured data (strictly without `priceRange`).
-   - Dynamic `sitemap.xml` and `robots.txt`.
-   - Open Graph and Twitter Card metadata.
-   - WCAG 2.1 AA accessibility (min 48×48px touch targets, focus rings, skip-to-content link).
-8. **Transparent Placeholders & Empty States:**
-   - No stock images misrepresented as actual client work.
-   - Branded preview placeholders in the Gallery.
-   - Professional empty states for Offers and Testimonials.
+## Services
 
----
+The website presents beauty and salon services such as:
 
-## 🛠️ Project Structure
+* Haircuts, hairstyling, hair colouring, spa, and hair treatments
+* Bridal, party, and engagement makeup
+* Facials, cleanup, and bleach
+* Manicure, pedicure, and nail art
+* Threading
 
-```
-d:\projects\Shraddha-Beauty-Palour\
-├── public/
-│   ├── favicon.ico
-│   ├── site.webmanifest
-│   └── images/
-│       ├── hero/
-│       │   └── hero-illustration.svg
-│       └── placeholders/
-│           ├── bridal.svg
-│           ├── hair.svg
-│           ├── makeup.svg
-│           ├── nails.svg
-│           ├── saree.svg
-│           └── certificate.svg
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx              # Root layout (LanguageProvider, JsonLd, Nav, Footer)
-│   │   ├── page.tsx                # 1. Home page (10 key sections)
-│   │   ├── about/page.tsx          # 2. About Us page (Female-only environment)
-│   │   ├── services/page.tsx       # 3. Services catalog (5 categories, no prices)
-│   │   ├── gallery/page.tsx        # 4. Filterable gallery (honest placeholders)
-│   │   ├── offers/page.tsx         # 5. Offers (designed empty state)
-│   │   ├── testimonials/page.tsx   # 6. Testimonials (honest empty state)
-│   │   ├── faq/page.tsx            # 7. FAQ (interactive accessible accordion)
-│   │   ├── contact/page.tsx        # 8. Contact & WhatsApp appointment builder
-│   │   ├── icon.svg                # Automatic favicon & app icon
-│   │   ├── sitemap.ts              # Dynamic sitemap.xml generator
-│   │   ├── robots.ts               # Dynamic robots.txt generator
-│   │   ├── not-found.tsx           # Custom 404 page
-│   │   └── globals.css             # Tailwind directives & Devanagari line-height
-│   ├── components/
-│   │   ├── common/                 # JsonLd, SkipToContent
-│   │   ├── contact/                # ContactInfoCards, MapSection, WhatsAppForm
-│   │   ├── gallery/                # GalleryCard, GalleryFilter, TransparencyNotice
-│   │   ├── home/                   # Hero, Intro, Services, Highlights, Gallery, CTA, Location
-│   │   ├── layout/                 # Header, Navbar, MobileNav, Footer, FloatingWhatsApp, LanguageSwitcher
-│   │   ├── services/               # PricingNotice, ServiceCard, ServiceCategoryTabs
-│   │   └── ui/                     # Accordion, Badge, Button, Card, Container, EmptyState, Icons, SectionHeader
-│   ├── config/
-│   │   ├── salon.config.ts         # Single source of truth for business information
-│   │   └── navigation.config.ts    # Centralized navigation routes
-│   ├── content/
-│   │   ├── services.data.ts        # Categorized treatments list
-│   │   ├── gallery.data.ts         # Gallery items & placeholder schema
-│   │   └── faq.data.ts             # Verified FAQ items
-│   ├── context/
-│   │   └── LanguageContext.tsx     # Trilingual state & persistence engine
-│   ├── dictionaries/
-│   │   ├── en.ts                   # English translations
-│   │   ├── mr.ts                   # Marathi (मराठी) translations
-│   │   └── hi.ts                   # Hindi (हिंदी) translations
-│   └── types/                      # TypeScript definitions (config, services, i18n)
-├── next.config.mjs                 # output: 'export', images: { unoptimized: true }, trailingSlash: true
-├── tailwind.config.ts              # Design tokens (Rose Wine, Champagne Gold, Warm Cream)
-├── package.json
-└── tsconfig.json
+Customers can use the website's contact options to enquire about services and appointments.
+
+## Getting Started
+
+### Prerequisites
+
+Install the following before running the project:
+
+* Node.js
+* npm
+* Git
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/AdityaPande-ML-DataAnalyst/Shraddha-Beauty-Palour.git
+   ```
+
+2. Open the project directory:
+
+   ```bash
+   cd Shraddha-Beauty-Palour
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env.local` file in the project root and configure the environment variables listed below.
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open `http://localhost:3000` in your browser.
+
+## Environment Variables
+
+Configure the following variables in `.env.local` for local development.
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
 ```
 
----
+Obtain the Firebase configuration from your Firebase project settings and the Cloudinary cloud name and upload preset from your Cloudinary dashboard.
 
-## 💻 Local Development
+**Security notes:**
 
-### 1. Install Dependencies
-```bash
-npm install
-```
+* Never commit `.env.local` to GitHub.
+* Do not expose Firebase Admin service-account credentials or Cloudinary API secrets in frontend code.
+* Restrict Firestore write permissions to the authorized owner account.
+* Configure Firebase Authentication's authorized domains for your deployed website.
 
-### 2. Run the Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Production Build
 
-### 3. Build & Test Static Export
+Create the production build:
+
 ```bash
 npm run build
 ```
-This compiles the application and outputs pure static files to the `out/` directory.
 
----
+The project is configured for static export using Next.js `output: 'export'`. The generated website files are expected in the `out` directory.
 
-## 🌐 Free Multi-Platform Deployment Guide
+## Deployment on Vercel
 
-### Option 1: Cloudflare Pages (Recommended - 100% Free)
-1. Push this repository to GitHub.
-2. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com/) and navigate to **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
-3. Select the `Shraddha-Beauty-Palour` repository.
-4. Set Build Settings:
-   - **Framework Preset:** Next.js (Static HTML Export)
-   - **Build Command:** `npm run build`
-   - **Build Output Directory:** `out`
-5. Click **Save and Deploy**. Free automated HTTPS and global CDN will be active immediately.
+1. Push the latest code to GitHub.
+2. Sign in to [Vercel](https://vercel.com/) using GitHub.
+3. Import the `Shraddha-Beauty-Palour` repository.
+4. Configure the project build settings according to `package.json` and `next.config.ts` or `next.config.js`.
+5. Add the required environment variables in **Project Settings → Environment Variables**.
+6. Deploy the project.
+7. Add the deployed Vercel domain to Firebase Authentication's authorized domains if required.
+8. Test the public website and admin functionality after deployment.
 
-### Option 2: GitHub Pages (100% Free)
-1. In repository settings, navigate to **Settings** > **Pages**.
-2. Under **Build and deployment** > **Source**, choose **GitHub Actions**.
-3. Create `.github/workflows/deploy.yml` with the standard GitHub Pages deployment action targeting the `out/` folder.
+Firebase provides authentication and database services, while Cloudinary hosts the gallery images. A separate custom backend server is not required for the current client-side architecture.
 
-### Option 3: Netlify (100% Free)
-1. Connect the GitHub repository in [Netlify](https://www.netlify.com/).
-2. Set **Build Command:** `npm run build`
-3. Set **Publish Directory:** `out`
-4. Deploy site.
+## Repository
 
-### Option 4: Standard cPanel / Apache / Nginx Static Hosting
-1. Run `npm run build` locally.
-2. Compress or upload the entire contents of the generated `out/` directory into your cPanel host's `public_html/` folder using File Manager or SFTP.
-3. No Node.js runtime or `.htaccess` URL rewrite modules required (Next.js `trailingSlash: true` outputs static `index.html` files for every route).
+GitHub: https://github.com/AdityaPande-ML-DataAnalyst/Shraddha-Beauty-Palour
 
----
+## License
 
-## 📝 Updating Salon Information Before Launch
-
-All business details are isolated in a single configuration file:
-👉 **[`src/config/salon.config.ts`](file:///d:/projects/Shraddha-Beauty-Palour/src/config/salon.config.ts)**
-
-When the owner provides the final details:
-1. **Active Phone Number:** Update `phoneDisplay`, `whatsappDisplay`, and `whatsappNumber` (e.g. `'919876543210'`), and set `isPhonePlaceholder: false`.
-2. **Verified Google Business Profile Pin:** Replace `directionsUrl` and `embedUrl` with the official Google Maps link, and set `isExactPin: true`.
-3. **Authentic Salon Photos:** Place real photos in `/public/images/gallery/` and update paths in `src/content/gallery.data.ts` setting `isPlaceholder: false`.
-4. **Special Offers:** Update `src/app/offers/page.tsx` when the owner introduces festive or seasonal packages.
-
+This project is developed for Shraddha Beauty Parlour. Contact the project owner before reusing business-specific content, branding, or images.
